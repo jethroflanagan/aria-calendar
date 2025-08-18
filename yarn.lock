@@ -1209,6 +1209,14 @@
     "@react-types/shared" "^3.31.0"
     "@swc/helpers" "^0.5.0"
 
+"@react-stately/data@^3.13.2":
+  version "3.13.2"
+  resolved "https://registry.yarnpkg.com/@react-stately/data/-/data-3.13.2.tgz#b649aa85c58e0e20e257fc749daa8042b7d482fb"
+  integrity sha512-xdCqR8dJ3cnvO8EdCeuQ335dOuBqEV4z/3LnpxmR11gyn8dWwtY5O794g5+AS0KqCgd9W0v7iBrRywq5UT2pCA==
+  dependencies:
+    "@react-types/shared" "^3.31.0"
+    "@swc/helpers" "^0.5.0"
+
 "@react-stately/datepicker@^3.15.0":
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/@react-stately/datepicker/-/datepicker-3.15.0.tgz#a152219bb362d2d81169e6ef4a12df988f93efe8"
@@ -2618,6 +2626,38 @@ react-refresh@^0.17.0:
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.17.0.tgz#b7e579c3657f23d04eccbe4ad2e58a8ed51e7e53"
   integrity sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==
+
+react-stately@^3.40.0:
+  version "3.40.0"
+  resolved "https://registry.yarnpkg.com/react-stately/-/react-stately-3.40.0.tgz#1ca17aead2e65217c58dbad79bb21175d7af1d31"
+  integrity sha512-Icg2q1pxTskx2dph3cFUu9RUQcInq25WZfUcKroX1Kl4jWxBobnfMvuxvJHHkysJh77IsnLmhF3+8If5oCoMFQ==
+  dependencies:
+    "@react-stately/calendar" "^3.8.3"
+    "@react-stately/checkbox" "^3.7.0"
+    "@react-stately/collections" "^3.12.6"
+    "@react-stately/color" "^3.9.0"
+    "@react-stately/combobox" "^3.11.0"
+    "@react-stately/data" "^3.13.2"
+    "@react-stately/datepicker" "^3.15.0"
+    "@react-stately/disclosure" "^3.0.6"
+    "@react-stately/dnd" "^3.6.1"
+    "@react-stately/form" "^3.2.0"
+    "@react-stately/list" "^3.12.4"
+    "@react-stately/menu" "^3.9.6"
+    "@react-stately/numberfield" "^3.10.0"
+    "@react-stately/overlays" "^3.6.18"
+    "@react-stately/radio" "^3.11.0"
+    "@react-stately/searchfield" "^3.5.14"
+    "@react-stately/select" "^3.7.0"
+    "@react-stately/selection" "^3.20.4"
+    "@react-stately/slider" "^3.7.0"
+    "@react-stately/table" "^3.14.4"
+    "@react-stately/tabs" "^3.8.4"
+    "@react-stately/toast" "^3.1.2"
+    "@react-stately/toggle" "^3.9.0"
+    "@react-stately/tooltip" "^3.5.6"
+    "@react-stately/tree" "^3.9.1"
+    "@react-types/shared" "^3.31.0"
 
 react@^19.0.0:
   version "19.1.1"
