@@ -1,0 +1,12 @@
+.husky
+.next
+env
+node_modules
+storybook-static
+*.json
+*.tsx
+*.ts
+*.js
+*.yml
+*.md
+*.mdx

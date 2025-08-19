@@ -1,0 +1,19 @@
+.cell {
+  cursor: pointer;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  // background-color: red;
+  &_isSelected {
+    background: green;
+    color: white;
+  }
+
+  &_isUnavailable {
+    color: var(--spectrum-global-color-red-600);
+  }
+
+  &_isDisabled {
+    color: gray;
+  }
+}

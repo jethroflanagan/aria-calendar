@@ -1,5 +1,5 @@
-import {useCalendarGrid} from 'react-aria';
-import CalendarCell from './CalendarCell';
+import { useCalendarGrid } from 'react-aria';
+import CalendarCell from '../CalendarCell';
 
 function CalendarGrid({ state, ...props }) {
   let { gridProps, headerProps, weekDays, weeksInMonth } = useCalendarGrid(
@@ -7,6 +7,7 @@ function CalendarGrid({ state, ...props }) {
     state
   );
 
+  console.log(state)
   return (
     <table {...gridProps}>
       <thead {...headerProps}>

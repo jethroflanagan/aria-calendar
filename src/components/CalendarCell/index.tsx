@@ -1,5 +1,9 @@
 import { useRef } from 'react';
-import {useCalendarCell} from 'react-aria';
+import { useCalendarCell } from 'react-aria';
+import styles from './CalendarCell.module.scss';
+import bindStyles from '../../utils/bindStyles';
+
+const s = bindStyles(styles);
 
 function CalendarCell({ state, date }) {
   let ref = useRef(null);
@@ -19,13 +23,12 @@ function CalendarCell({ state, date }) {
         {...buttonProps}
         ref={ref}
         hidden={isOutsideVisibleRange}
-        className={`cell ${isSelected ? 'selected' : ''} ${
-          isDisabled ? 'disabled' : ''
-        } ${isUnavailable ? 'unavailable' : ''}`}
+        // className={s('cell', { isSelected, isDisabled, isUnavailable })}
+        className={s('cell', { isSelected, isDisabled, isUnavailable })}
       >
         {formattedDate}
       </div>
-    </td>
+    </td >
   );
 }
 

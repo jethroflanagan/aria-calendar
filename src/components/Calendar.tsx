@@ -1,15 +1,17 @@
-import {useCalendar, useLocale} from 'react-aria';
-import {useCalendarState} from 'react-stately';
+import {DateValue, useCalendar, useLocale} from 'react-aria';
+import {CalendarStateOptions, useCalendarState} from 'react-stately';
+import { FC } from 'react';
 import {createCalendar} from '@internationalized/date';
 import CalendarGrid from './CalendarGrid';
+import Button from './Button';
 
 // Reuse the Button from your component library. See below for details.
 
-function Calendar(props) {
+const Calendar: FC<CalendarStateOptions<DateValue>> = (props) => {
   let { locale } = useLocale();
   let state = useCalendarState({
-    createCalendar,
     ...props,
+    createCalendar,
     locale
   });
 
@@ -22,10 +24,10 @@ function Calendar(props) {
     <div {...calendarProps} className="calendar">
       <div className="header">
         <h2>{title}</h2>
-        <button {...prevButtonProps}>&lt;</button>
-        <button {...nextButtonProps}>&gt;</button>
+        <Button {...prevButtonProps}>&lt;</Button>
+        <Button {...nextButtonProps}>&gt;</Button>
       </div>
-      <CalendarGrid state={state} firstDayOfWeek={props.firstDayOfWeek} />
+      <CalendarGrid state={state} firstDayOfWeek={'mon'} />
     </div>
   );
 }
