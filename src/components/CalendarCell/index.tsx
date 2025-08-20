@@ -23,7 +23,7 @@ const CalendarCell: FC<CalendarCellProps> = ({ state, date }) => {
   } = useCalendarCell({ date }, state, ref);
 
   return (
-    <td {...cellProps}>
+    <div {...cellProps}>
       <div
         {...buttonProps}
         ref={ref}
@@ -33,7 +33,7 @@ const CalendarCell: FC<CalendarCellProps> = ({ state, date }) => {
       >
         {formattedDate}
       </div>
-    </td >
+    </div >
   );
 }
 
