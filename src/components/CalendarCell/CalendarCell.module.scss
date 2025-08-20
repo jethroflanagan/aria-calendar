@@ -3,17 +3,16 @@
   text-align: center;
   padding: 1rem;
   border-radius: 0.25rem;
-  // background-color: red;
   &_isSelected {
-    background: green;
+    background: rgb(28, 116, 193);
     color: white;
   }
 
   &_isUnavailable {
-    color: var(--spectrum-global-color-red-600);
+    color: rgb(167, 54, 54);
   }
 
   &_isDisabled {
-    color: gray;
+    color: rgb(129, 120, 120);
   }
 }
