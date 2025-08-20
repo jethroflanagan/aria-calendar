@@ -1,39 +1,38 @@
 import { useCalendarGrid } from 'react-aria';
 import CalendarCell from '../CalendarCell';
+import styles from './CalendarGrid.module.scss';
+import { FC, useMemo } from 'react';
 
-function CalendarGrid({ state, ...props }) {
+const CalendarGrid: FC = ({ state, ...props }) => {
   let { gridProps, headerProps, weekDays, weeksInMonth } = useCalendarGrid(
     props,
     state
   );
 
-  console.log(state)
+  const weeks = useMemo(() => ([...new Array(weeksInMonth).keys()]), [])
+
   return (
-    <table {...gridProps}>
-      <thead {...headerProps}>
-        <tr>
-          {weekDays.map((day, index) => <th key={index}>{day}</th>)}
-        </tr>
-      </thead>
-      <tbody>
-        {[...new Array(weeksInMonth).keys()].map((weekIndex) => (
-          <tr key={weekIndex}>
-            {state.getDatesInWeek(weekIndex).map((date, i) => (
-              date
-                ? (
-                  <CalendarCell
-                    key={i}
-                    state={state}
-                    date={date}
-                  />
-                )
-                : <td key={i} />
-            ))}
-          </tr>
+    <div {...gridProps} className={styles.root}>
+      <header {...headerProps} className={styles.header}>
+        {weekDays.map((day, index) => <div key={index}>{day}</div>)}
+      </header>
+      <div className={styles.grid}>
+        {weeks.map((weekIndex) => (
+          state.getDatesInWeek(weekIndex).map((date, i) => (
+            date
+              ? (
+                <CalendarCell
+                  key={i}
+                  state={state}
+                  date={date}
+                />
+              )
+              : <div key={i} />
+          ))
         ))}
-      </tbody>
-    </table>
+      </div>
+    </div>
   );
 }
 
-export default CalendarGrid
+export default CalendarGrid;

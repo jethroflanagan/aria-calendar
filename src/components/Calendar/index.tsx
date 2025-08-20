@@ -1,9 +1,10 @@
-import {DateValue, useCalendar, useLocale} from 'react-aria';
-import {CalendarStateOptions, useCalendarState} from 'react-stately';
+import { DateValue, useCalendar, useLocale } from 'react-aria';
+import { CalendarStateOptions, useCalendarState } from 'react-stately';
 import { FC } from 'react';
-import {createCalendar} from '@internationalized/date';
-import CalendarGrid from './CalendarGrid';
-import Button from './Button';
+import { createCalendar } from '@internationalized/date';
+import CalendarGrid from '../CalendarGrid';
+import Button from '../Button';
+import styles from './Calendar.module.scss';
 
 // Reuse the Button from your component library. See below for details.
 
@@ -23,9 +24,11 @@ const Calendar: FC<CalendarStateOptions<DateValue>> = (props) => {
   return (
     <div {...calendarProps} className="calendar">
       <div className="header">
-        <h2>{title}</h2>
-        <Button {...prevButtonProps}>&lt;</Button>
-        <Button {...nextButtonProps}>&gt;</Button>
+        <div className={styles.controls}>
+          <Button {...prevButtonProps}>&lt;</Button>
+          <h2>{title}</h2>
+          <Button {...nextButtonProps}>&gt;</Button>
+        </div>
       </div>
       <CalendarGrid state={state} firstDayOfWeek={'mon'} />
     </div>
