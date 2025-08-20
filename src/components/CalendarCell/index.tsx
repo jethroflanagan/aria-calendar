@@ -28,7 +28,6 @@ const CalendarCell: FC<CalendarCellProps> = ({ state, date }) => {
         {...buttonProps}
         ref={ref}
         hidden={isOutsideVisibleRange}
-        // className={s('cell', { isSelected, isDisabled, isUnavailable })}
         className={s('cell', { isSelected, isDisabled, isUnavailable })}
       >
         {formattedDate}
