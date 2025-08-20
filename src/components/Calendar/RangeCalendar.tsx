@@ -1,30 +1,33 @@
 import { createCalendar } from '@internationalized/date';
-import { FC } from 'react';
-import { AriaCalendarProps, DateValue, useCalendar, useLocale } from 'react-aria';
-import { useCalendarState } from 'react-stately';
+import { FC, useRef } from 'react';
+import { AriaRangeCalendarProps, DateValue, useLocale, useRangeCalendar } from 'react-aria';
+import { useRangeCalendarState } from 'react-stately';
 import Button from '../Button';
 import CalendarGrid from '../CalendarGrid';
 import styles from './Calendar.module.scss';
 
 // Reuse the Button from your component library. See below for details.
 
-type CalendarProps = {
-} & (AriaCalendarProps<DateValue>)
-const Calendar: FC<CalendarProps> = (props) => {
+type RangeCalendarProps = {
+} & (AriaRangeCalendarProps<DateValue>)
+
+const RangeCalendar: FC<RangeCalendarProps> = (props) => {
   let { locale } = useLocale();
-  let state = useCalendarState({
+  let state = useRangeCalendarState({
     ...props,
     createCalendar,
     locale
   });
 
-  let { calendarProps, prevButtonProps, nextButtonProps, title } = useCalendar(
+  const ref = useRef(null);
+  let { calendarProps, prevButtonProps, nextButtonProps, title } = useRangeCalendar(
     props,
     state,
+    ref,
   );
 
   return (
-    <div {...calendarProps} className="calendar" >
+    <div {...calendarProps} className="calendar" ref={ref}>
       <div className="header">
         <div className={styles.controls}>
           <Button {...prevButtonProps}>&lt;</Button>
@@ -36,4 +39,4 @@ const Calendar: FC<CalendarProps> = (props) => {
     </div>
   );
 }
-export default Calendar;
+export default RangeCalendar;
