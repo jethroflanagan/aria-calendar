@@ -1,5 +1,16 @@
+.root {
+  width: 100%;
+}
 .controls {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 2rem 0;
+}
+
+.year {
+  display: grid;
+  gap: 1rem;
+  grid-auto-flow: row;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(250px, min-content));
 }
