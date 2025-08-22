@@ -6,14 +6,15 @@ import { CalendarState, RangeCalendarState } from 'react-stately';
 
 type CalendarGridProps = {
   state: RangeCalendarState | CalendarState
+  offset?: number
 } & AriaCalendarGridProps;
 
-const CalendarGrid: FC<CalendarGridProps> = ({ state, ...props }) => {
+const CalendarGrid: FC<CalendarGridProps> = ({ offset = 0, state, ...props }) => {
   let { gridProps, headerProps, weekDays, weeksInMonth } = useCalendarGrid(
     props,
     state
   );
-
+  const startDate = state.visibleRange.start.add({ months: offset });
   const weeks = useMemo(() => ([...new Array(weeksInMonth).keys()]), [])
 
   return (
@@ -23,13 +24,14 @@ const CalendarGrid: FC<CalendarGridProps> = ({ state, ...props }) => {
       </header>
       <div className={styles.grid}>
         {weeks.map((weekIndex) => (
-          state.getDatesInWeek(weekIndex).map((date, i) => (
+          state.getDatesInWeek(weekIndex, startDate).map((date, i) => (
             date
               ? (
                 <CalendarCell
                   key={i}
                   state={state}
                   date={date}
+                  currentMonth={startDate}
                 />
               )
               : <div key={i} />
