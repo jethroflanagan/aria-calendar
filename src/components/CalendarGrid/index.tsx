@@ -4,7 +4,7 @@ import styles from './CalendarGrid.module.scss';
 import { FC, useMemo } from 'react';
 import { CalendarState, RangeCalendarState } from 'react-stately';
 import { endOfMonth, getLocalTimeZone, getWeeksInMonth } from '@internationalized/date';
-import { useLocale } from "@react-aria/i18n";
+import { useDateFormatter, useLocale } from "@react-aria/i18n";
 import { isSameMonth } from 'date-fns';
 
 type CalendarGridProps = {
@@ -27,11 +27,20 @@ const CalendarGrid: FC<CalendarGridProps> = ({ offset = 0, state, ...props }) =>
   const timezone = getLocalTimeZone();
   let weeksInMonth = getWeeksInMonth(startDate, locale);
   const weeks = useMemo(() => ([...new Array(weeksInMonth).keys()]), [])
-
+  let monthDateFormatter = useDateFormatter({
+    month: "long",
+    year: "numeric",
+    timeZone: state.timeZone
+  });
   return (
     <div {...gridProps} className={styles.root}>
-      <header {...headerProps} className={styles.header}>
-        {weekDays.map((day, index) => <div key={index} className={styles.day}>{day}</div>)}
+      <header>
+        <div className={styles.month}>
+          {monthDateFormatter.format(startDate.toDate(timezone))}
+        </div>
+        <div {...headerProps} className={styles.week}>
+          {weekDays.map((day, index) => <div key={index} className={styles.day}>{day}</div>)}
+        </div>
       </header>
       <div className={styles.grid}>
         {weeks.map((weekIndex) => (
