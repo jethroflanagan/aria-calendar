@@ -24,8 +24,8 @@ const Calendar: FC<CalendarProps> = (props) => {
   );
 
   return (
-    <div {...calendarProps} className="calendar" >
-      <div className="header">
+    <div {...calendarProps} className={styles.root} >
+      <div className={styles.header}>
         <div className={styles.controls}>
           <Button {...prevButtonProps}>&lt;</Button>
           <h2>{title}</h2>

@@ -3,6 +3,9 @@ import CalendarCell from '../CalendarCell';
 import styles from './CalendarGrid.module.scss';
 import { FC, useMemo } from 'react';
 import { CalendarState, RangeCalendarState } from 'react-stately';
+import { endOfMonth, getLocalTimeZone, getWeeksInMonth } from '@internationalized/date';
+import { useLocale } from "@react-aria/i18n";
+import { isSameMonth } from 'date-fns';
 
 type CalendarGridProps = {
   state: RangeCalendarState | CalendarState
@@ -10,11 +13,19 @@ type CalendarGridProps = {
 } & AriaCalendarGridProps;
 
 const CalendarGrid: FC<CalendarGridProps> = ({ offset = 0, state, ...props }) => {
-  let { gridProps, headerProps, weekDays, weeksInMonth } = useCalendarGrid(
-    props,
+  let startDate = state.visibleRange.start.add({ months: offset });
+  let endDate = endOfMonth(startDate);
+  let { locale } = useLocale();
+  let { gridProps, headerProps, weekDays } = useCalendarGrid(
+    {
+      ...props,
+      startDate,
+      endDate
+    },
     state
   );
-  const startDate = state.visibleRange.start.add({ months: offset });
+  const timezone = getLocalTimeZone();
+  let weeksInMonth = getWeeksInMonth(startDate, locale);
   const weeks = useMemo(() => ([...new Array(weeksInMonth).keys()]), [])
 
   return (
@@ -25,13 +36,12 @@ const CalendarGrid: FC<CalendarGridProps> = ({ offset = 0, state, ...props }) =>
       <div className={styles.grid}>
         {weeks.map((weekIndex) => (
           state.getDatesInWeek(weekIndex, startDate).map((date, i) => (
-            date
+            date && isSameMonth(startDate.toDate(timezone), date.toDate(timezone))
               ? (
                 <CalendarCell
                   key={i}
                   state={state}
                   date={date}
-                  currentMonth={startDate}
                 />
               )
               : <div key={i} />
